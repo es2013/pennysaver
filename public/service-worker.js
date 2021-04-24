@@ -51,12 +51,9 @@ self.addEventListener('activate', function (e) {
 });
 
 //intercept fetch requests
-
 self.addEventListener('fetch', function (evt) {
     evt.respondWith(
-        caches 
-        .open(DATA_CACHE_NAME)
-        .then(cache =>{
+        caches.match(evt.request).then(function (request) {
             if (request) {
                 console.log('responding with cache : ' + evt.request.url);
                 return request;
