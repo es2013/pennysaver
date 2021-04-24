@@ -30,25 +30,21 @@ self.addEventListener('install', function (e) {
 });
 
 //activate the service worker
-self.addEventListener('activate', function (e) {
+self.addEventListener('activate', function(e) {
     e.waitUntil(
-        caches.keys().then(function (keyList) {
-            let cacheKeeplist = keyList.filter(function (key) {
-                return key.indexOf(APP_PREFIX);
-            });
-            cacheKeeplist.push(CACHE_NAME);
-
-            return Promise.all(
-                keyList.map(function (key, i) {
-                    if (cacheKeeplist.indexOf(key) === -1) {
-                        console.log('deleting cache : ' + keyList[i]);
-                        return caches.delete(keyList[i]);
-                    }
-                })
-            );
-        })
+      caches.keys().then(keyList => {
+          return Promise.all(
+              keyList.map(key => {
+                  if (key !== CACHE_NAME && key !== DATA_CACHE_NAME) {
+                      console.log('Removing old cache data', key);
+                      return caches.delete(key);
+                  }
+              })
+          )
+      })
     );
-});
+    self.clients.claim();
+  });
 
 //intercept fetch requests
 self.addEventListener('fetch', function (evt) {

@@ -11,7 +11,7 @@ request.onsuccess = function (event) {
     if (navigator.onLine) {
         uploadEntry();
     }
-};
+}
 
 request.onerror = function (event) {
     console.log(event.target.errorCode);
