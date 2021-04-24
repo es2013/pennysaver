@@ -18,11 +18,12 @@ USER STORY AS AN avid traveler I WANT to be able to track my withdrawals and dep
 ## Technology Used
 * Javascript
 * Express
-* Mongo Atlas
+* MongoDB Atlas
 * MongoDB
 * Heroku
 
 ## Usage
+![Challenge Demo](./img/hw19.gf.gif)
 
 ## Author Info
-[Github](https://github.com/es2013)
+[Github: es2013](https://github.com/es2013)
